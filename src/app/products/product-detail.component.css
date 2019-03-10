@@ -1,0 +1,44 @@
+.full-card {
+    display:flex;
+    flex-direction: row;
+}
+.cardPicture{
+    border-right: 2px solid black;
+}
+
+.side-text{
+    margin: 20px 20px 0 10px;
+}
+.inner-text{
+    margin-bottom: 5px;
+}
+.wholePage{
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+}
+.oneItem{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+}
+.sideFavorites{
+    max-height: 550px;
+    border: 2px solid black;
+    border-radius: 2%;
+}
+
+.estimateRating{
+    margin-bottom: 5px;
+    margin-top: 20px;
+    border-top: 2px solid black;
+}
+
+@media only screen and (max-width: 980px){
+    .wholePage{
+        display:grid;
+        grid-template-columns: 1fr;
+    }
+
+    .sideFavorites{
+        min-Height: 200px;
+    }
+}

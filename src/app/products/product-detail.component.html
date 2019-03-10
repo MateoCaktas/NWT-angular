@@ -1,0 +1,91 @@
+<div class="wholePage">
+    <div class='card' *ngIf="product">
+        <div class="card-header">
+            {{pageTitle + ': ' + product.productName}}
+        </div>
+        
+        <div class="full-card">
+            <div class="cardPicture">
+                <img 
+                    [src]="product.imageUrl"
+                    [title]= "productName"
+                    [style.max-width.px]="350"
+                    [style.max-height.px]="300">
+            </div>
+            <div class="side-text"> 
+                <div class="inner-text">
+                    <b>Date of release:</b>{{product.releaseDate}}
+                </div>
+                <div class="inner-text">
+                    <b>Genre:</b>{{product.productCode}}
+                </div>
+
+                <div>
+                    <b>Description:</b>
+                </div>
+                <div class="inner-text">
+                    {{product.description}}
+                </div>
+                <div class="inner-text">
+                    <b>Price:</b>{{product.price | currency:"USD":"symbol":"1.2-2"}}
+                </div>
+                
+
+        <div class="treciStupac">
+            <div *ngFor="let rating of product.ratings">
+                <div>Ocjena:</div>
+                <pm-star [rating]='rating'
+                        (ratingClicked)='onRatingClicked($event)'></pm-star>
+            </div>
+        </div>
+            
+            
+            <div class="estimateRating">
+                <b>Average rating:</b>{{this.Prosjek | number:'1.1-2'}}
+            </div>
+            <div class="inner-text">
+                <b>Your rating:</b>{{this.ratingClicked}}
+            </div>
+            <pm-star *ngIf="this.Prosjek"
+            [rating]='this.Prosjek'
+            (ratingClicked)='onRatingClicked($event)'></pm-star>
+
+
+            <app-rating [rating]='this.starRating' [itemId]='this.productId' 
+            (ratingClick)='ratingComponentClick($event)'></app-rating>
+           
+            <p *ngIf='ratingClicked'>You have given {{ratingClicked}} stars to {{itemIdRatingClicked}}</p>
+            
+        </div>
+       
+          
+    </div>
+    <div><router-outlet></router-outlet></div>
+    <div class='card-footer'>
+        <button class='btn btn-outline-secondary'
+        (click)='onBack()'
+        style="width: 80px">
+            <i class="fa fa-chevron-left"></i>Back
+        </button>
+    </div>
+    </div>
+    <div class="sideFavorites">
+            <h1> My favorites</h1>
+                <div *ngFor="let favorites of myFavorites">
+                    <div *ngIf="favorites.isFavorite"
+                        class="oneItem">
+                        <img [src]="favorites.imageUrl"
+                        [style.width.px]="100">
+                        <div class="secondRowText">
+                            <div>
+                            <a [routerLink]="['/products', favorites.productId]">
+                                {{favorites.productName}}</a>
+                            <div>
+                                {{favorites.starRating}}
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+
+        </div>
+</div>
